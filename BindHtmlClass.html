@@ -10,7 +10,7 @@
 
 <body>
     <div id="root">
-        <div id="child1" class="test" v-bind:class="{ active: isActive }" @click="getChild1ClassName">{{className}}</div>
+        <div id="child1" class="test" v-bind:class="classObject" @click="getChild1ClassName">{{className}}</div>
     </div>
 
 </body>
@@ -19,12 +19,16 @@
         el: "#root",
         data: {
             isActive: true,
+            classObject: {
+                active: true,
+                'text-danger': true
+            },
             className: 'oldName'
         },
         methods: {
             getChild1ClassName: function() {
                 this.className = document.getElementById("child1").className;
-                this.isActive = !this.isActive;
+                this.classObject.active = !this.classObject.active;
             }
 
         }
